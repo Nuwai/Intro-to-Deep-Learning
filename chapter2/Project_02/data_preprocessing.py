@@ -42,3 +42,18 @@ def preprocess_category(df, column):
 def preprocess_onehot(df, column):
     df = pd.get_dummies(df, columns=[column])
     return df
+
+
+def clean_name_column(df, column):
+    def clean_single_name(name):
+        # Convert to lowercase
+        name = str(name).lower()
+        # Remove anything inside brackets
+        name = re.sub(r'\(.*?\)', '', name)
+        # Replace slashes with space
+        name = name.replace('/', ' ')
+        # Strip leading/trailing whitespace
+        return name.strip()
+    
+    df[column] = df[column].apply(clean_single_name)
+    return df
