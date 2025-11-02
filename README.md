@@ -130,7 +130,19 @@ Size: Several thousand labeled entries
 - Duplicate names: Some villages appear in multiple regions → label ambiguity
 - Short text inputs: Many names < 5 characters → weak contextual signal
 - Imbalanced data: Major regions overrepresented → model bias risk
+- Noisy text variation: Inconsistent Romanization styles due to dialect differences.
 
+**Phonetic Normalization**
+
+Romanized Burmese text often varies due to regional pronunciation.
+Normalization rules included:
+  - Reducing aspirated/compound consonants (ph, hp → p)
+  - Standardizing vowels (au, aw, ay → o or e)
+  - Unifying tone endings (aung → ong, ein → en)
+  - Removing duplicate letters (pp → p)
+  - Lowercasing and cleaning text
+  - This ensured the model could generalize better across spelling and dialect variations.
+    
 # Methodology
 
 **1. Data Cleaning & Preprocessing**
@@ -175,6 +187,10 @@ To ensure robust learning:
 | Model 8     | Conv1D + Dense Layers (100 epochs) | FastText   | 92            | 40           | Best generalization              |
 | Model 9     | Conv1D + LSTM + Dense Layers       | FastText   | 95            | 40           | Best-performing model            |
 | Model 10–11 | Phonetic Norm + FastText           | FastText   | 92–95         | 35–37        | Slight performance drop          |
+Observation:
+- Deep LSTMs underperformed due to sparse input.
+- CNN + FastText captured most subword-level variations effectively.
+- Despite improvements, models still overfitted, suggesting strong dataset bias.
 
 **Key Results**
 Best Model:
@@ -190,10 +206,10 @@ Best Model:
 Baseline Model:
   - High bias toward frequent classes
   - Widespread misclassification on rare regions
-Best Model (FastText + ConvLSTM):
+Best Model (Conv1D + LSTM + FastText):
   - Improved diagonal dominance in confusion matrix
   - Better minority class recognition
-  - Stronger prediction spread across multiple regions
+  - Less overfitting, though accuracy still modest (~40%).
 
 **Statistical Validation**
 
@@ -207,15 +223,31 @@ A Chi-square test of independence (p < 0.05) confirmed a statistically significa
 - Overfitting persists: Limited, imbalanced data and lack of contextual features hinder generalization.
 - Statistical confirmation: The p-value < 0.05 validates feasibility of using text-based inference for geographic prediction.
 
+**Learning Points & Analysis**
+
+Bias in Data Collection
+  - The dataset was partially collected from local news, which disproportionately features villages in conflict or major events.
+  - As a result, the dataset lacks representation from peaceful or remote areas, making it non-inclusive.
+  - The model thus overfits to frequent “newsworthy” names, learning patterns that don’t generalize across all regions.
+
+Impact of Short and Sparse Inputs
+  - Many village names are only 1–2 words long, giving minimal signal for classification.
+  - This caused models, especially LSTMs, to underperform.
+
+Overfitting due to Bias and Limited Variation
+  - The small and biased dataset leads to memorization rather than pattern learning.
+  - Future data collection must ensure balanced sampling from official geographic datasets (e.g., MIMU, GAD lists).
+
+CNNs for Text
+  - Learned that CNNs can effectively capture local character dependencies — not just for images, but also for text classification tasks.
+
 **Reflection & Learnings**
 
 “This project reshaped how I view NLP challenges in low-resource languages.”
-- Learned to design encoding strategies for short, noisy Romanized text.
-- Understood how phonetic normalization helps reduce spelling inconsistencies.
-- Recognized that CNNs can effectively extract local character-level patterns in text (not just for images).
-- Gained hands-on experience in feature engineering, class imbalance handling, and evaluation metrics (e.g., Chi-square test).
-- Realized the importance of statistical validation before deep learning modeling.
-
+- This project deepened understanding of encoding choices, data validation, and bias impact on model behavior.
+- Learned that model architecture alone can’t fix biased or incomplete data — data diversity is essential.
+- Reinforced the importance of statistical testing before modeling to confirm problem feasibility.
+- Realized that deeper networks are not always better when data is short, sparse, or noisy.
 This project strengthened my ability to combine linguistic insight, statistical reasoning, and deep learning architecture design to solve challenging real-world classification problems.
 
 **🏁 Conclusion**
@@ -223,5 +255,14 @@ This project strengthened my ability to combine linguistic insight, statistical 
 This project demonstrates advanced deep learning applications for language-based geolocation prediction in low-resource linguistic environments.
 Despite data limitations, the best model achieved significant improvements using FastText embeddings and hybrid CNN–LSTM architectures, setting a strong foundation for future research on Myanmar language NLP and geographical text classification.
 
+**Recommendations for Future Work**
+
+- Expand dataset with more balanced coverage across all states/regions.
+- Apply phonetic algorithms (e.g., Soundex, Metaphone) for grouping similar names.
+- Explore Transformer-based models fine-tuned on Romanized Burmese.
+- Use data augmentation and multi-label classification for duplicated names.
+- Combine rule-based and neural methods to leverage both linguistic and statistical features.
+
 ---
+
 
