@@ -350,6 +350,7 @@ To test generalization beyond ImageNet, models were evaluated on Myanmar cultura
   - The top-1 confidence averaged only 38–55%, reflecting domain mismatch between Myanmar imagery and ImageNet’s Western-centric dataset.
 
 **Qualitative Analysis: Cultural Images**
+
 🛕 Pagoda Images
 - Most models predicted “stupa”, “mosque”, or “palace” — semantically similar but not culturally precise.
 - Predictions like “punching bag” or “lemon” for golden pagodas reflected shape bias and data scarcity for Southeast Asian contexts.
@@ -382,4 +383,5 @@ Key lessons include:
   - Efficiency–accuracy trade-offs are vital in model selection for real-world applications.
 Overall, this project strengthened our ability to conduct structured deep learning evaluations and interpret model behavior beyond raw accuracy numbers.
 ---
+
 
