@@ -265,4 +265,119 @@ Despite data limitations, the best model achieved significant improvements using
 
 ---
 
+## CNN Models Comparison and Analysis
+# Project Overview
 
+This project evaluates the performance of several Convolutional Neural Network (CNN) architectures — ResNet50, VGGNet16, InceptionV3, ConvNeXt, and EfficientNet — on diverse image types to study their robustness, inference efficiency, and adaptability to domain-specific (Myanmar cultural) data.
+The goal is to understand how well pretrained ImageNet models generalize to both standard and culturally unique image inputs under varying conditions.
+
+**Objectives**
+- Compare CNN architectures using top-1 and top-3 accuracy metrics.
+- Evaluate performance under different image conditions — clear, blurry, noisy, and culturally specific.
+- Analyze inference time vs. accuracy trade-offs for real-world deployment.
+- Study domain generalization gaps, especially for non-Western (Myanmar) imagery.
+
+**Experimental Setup**
+Models Evaluated
+- ResNet50
+- VGGNet16
+- InceptionV3
+- ConvNeXtTiny
+- EfficientNetB7
+
+All models were loaded with pretrained ImageNet weights for comparative inference testing.
+
+**Dataset**
+
+The test images were manually collected and categorized into three groups:
+- Simple and everyday objects
+- Noisy, blurry, or visually ambiguous images
+- Culturally specific Myanmar images (e.g., pagodas, monks, traditional objects)
+  ⚠️ Note: Since the dataset was curated from local news and online sources, it was biased toward more visually striking or conflict-related images. This imbalance led to   overfitting toward familiar object patterns and limited cultural inclusivity in model predictions.
+
+**Code Implementation**
+
+**Preprocessing and Evaluation Pipeline**
+
+Each model requires its own preprocessing pipeline (e.g., normalization and input resizing). A key implementation detail was dynamically assigning the correct preprocessing function for each model architecture (e.g., resnet_preprocess, inception_preprocess, etc.), which significantly improved performance consistency.
+```
+# Example
+if name == 'InceptionV3':
+    x = inception_preprocess(x)
+elif name == 'ResNet50':
+    x = resnet_preprocess(x)
+elif name == 'VGGNet16':
+    x = vgg_preprocess(x)
+elif name == 'EfficientNet':
+    x = effnet_preprocess(x)
+```
+Predictions were made using Top-K decoding, and inference time was recorded for each model.
+
+**Results and Findings**
+**🔹 Initial Observations**
+- Without correct preprocessing, InceptionV3 underperformed dramatically, producing confident but incorrect predictions.
+- After applying the appropriate model-specific preprocessing, accuracy improved to 85–96% across all models.
+
+### 📊 Normalized Evaluation Framework for Top-1 Predictions
+
+| **Model**      | **Avg. Confidence (%)** | **Avg. Time (s)** | **High Confidence (%)** | **Overall Score (Normalized)** |
+|----------------|-------------------------|-------------------|--------------------------|--------------------------------|
+| **ResNet50**   | 55.0%                   | 0.066             | 19.0%                   | **95.7**                       |
+| **InceptionV3**| 50.7%                   | 0.061             | 19.0%                   | **86.9**                       |
+| **EfficientNet**| 53.9%                  | 0.399             | 14.3%                   | **46.8**                       |
+| **VGGNet16**   | 38.4%                   | 0.080             | 9.5%                    | **36.2**                       |
+| **ConvNeXt**   | 46.3%                   | 0.297             | 19.0%                   | **26.8**                       |
+
+Inference speed vs. accuracy trade-off is an essential consideration for real-time systems.
+
+**CNN Robustness on Noisy, Blurry, and Confusing Images**
+
+**Key Observations**
+- Top-3 predictions often revealed semantically correct alternatives even when Top-1 was incorrect.
+- Example:
+  - “Dog wearing sunglasses” → sunglasses, sunglass, dog_breed
+  - “Wine glass with flower” → goblet, red_wine, vase
+- Misclassifications were semantically reasonable, e.g., camouflage gun → screw, hook, revolver.
+  - → Indicates that CNNs generalize visually similar patterns.
+- EfficientNet had the highest robustness (Top-1 = 20/33 correct), followed by InceptionV3 and ConvNeXt.
+
+**Domain Gap: Cultural and Out-of-Distribution (OOD) Analysis**
+
+To test generalization beyond ImageNet, models were evaluated on Myanmar cultural imagery, such as pagodas and monks.
+- **Key Findings**
+  - All models showed low confidence (Top-3 median 0.08–0.14), confirming poor generalization on culturally specific data.
+  - The top-1 confidence averaged only 38–55%, reflecting domain mismatch between Myanmar imagery and ImageNet’s Western-centric dataset.
+
+**Qualitative Analysis: Cultural Images**
+🛕 Pagoda Images
+- Most models predicted “stupa”, “mosque”, or “palace” — semantically similar but not culturally precise.
+- Predictions like “punching bag” or “lemon” for golden pagodas reflected shape bias and data scarcity for Southeast Asian contexts.
+
+🙏 Monk Image
+- Models mostly focused on the umbrella, predicting “umbrella”, “notebook”, or “kimono”.
+- Some outliers (“cellular telephone”, “cobra”) suggest confusion under unusual object combinations.
+
+**Insights and Discussion**
+- Top-3 evaluation provides a more realistic measure of model understanding than Top-1 accuracy alone.
+- Preprocessing correctness can drastically affect model accuracy — architectural awareness matters.
+- Inference time and confidence must be balanced for deployment.
+- Out-of-distribution failure reveals cultural bias in ImageNet-trained models, emphasizing the need for localized datasets.
+- Data collection bias (focusing on more visible/conflict-related images) led to overfitting and limited inclusivity, reinforcing the importance of diverse sampling in real-world data projects.
+
+**Conclusion**
+
+- CNNs retain semantic awareness under distortion, though Top-1 accuracy can mislead in ambiguous scenarios.
+- ResNet50 and InceptionV3 achieved the best balance between accuracy, inference speed, and robustness.
+- Evaluating Top-3 predictions offers richer interpretability for ambiguous or culturally diverse datasets.
+- The project highlights the importance of fair, inclusive data and the limitations of Western-trained AI models in global contexts.
+
+**Reflection and Learning**
+
+This project deepened our understanding of CNN interpretability, data bias, and preprocessing design.
+Key lessons include:
+  - Always align preprocessing pipelines with architecture requirements.
+  - Evaluation metrics must match real-world ambiguity — top-3 predictions reveal more than top-1 accuracy.
+  - Dataset inclusivity matters: collecting from local sources improved cultural relevance but introduced bias toward frequent/conflict imagery, reducing model generalization.
+  - Efficiency–accuracy trade-offs are vital in model selection for real-world applications.
+Overall, this project strengthened our ability to conduct structured deep learning evaluations and interpret model behavior beyond raw accuracy numbers.
+---
