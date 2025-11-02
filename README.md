@@ -11,7 +11,7 @@ This repo includes all the example codes and datasets used in my book 'Introduct
 I believe that hands-on learning is crucial for understanding, and thus, the explanations in the book are accompanied by detailed Python code snippets throughout the text. Readers can follow the instructions and run the code in this repository on their own computer or on an online platform such as Google Colab.
 
 ---
-## Chapter 2 — Project 1: Deep Neural Network Regression
+## Deep Learning Project – Housing Price Prediction (Singapore HDB Resale)
 **Project Overview**
 This project develops and optimizes Deep Neural Network (DNN) regression models to predict HDB resale housing prices in Singapore using TensorFlow.
 It demonstrates practical deep learning workflows — from data preprocessing and model architecture design to hyperparameter tuning, regularization, and performance evaluation.
@@ -94,5 +94,6 @@ Regularized Model 2 achieved the best generalization with an R² of 0.91, RMSE �
 The experiment illustrates key machine learning trade-offs and practical deep learning optimization for real-world tabular data.
 
 ---
+
 
 
