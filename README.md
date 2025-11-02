@@ -1,4 +1,4 @@
-# Introduction to Deep Learning
+# Description
 
 This repository is part of my coursework for the MMDT (Myannar Data Tech) program under Dr. Myo Thida, focusing on project-based learning in Deep Learning.
 It includes all assignments, experiments, and applied projects developed throughout the course; covering topics from fundamental neural network architectures to advanced model optimization and analysis.
@@ -34,5 +34,6 @@ Before running the code examples, make sure to install the required libraries. Y
 ```sh
 pip install -r requirements.txt
 ```
+
 
 
