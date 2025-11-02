@@ -90,6 +90,7 @@ Built and compared multiple architectures using TensorFlow/Keras:
   
 
 **🏁 Conclusion**
+
 Regularized Model 2 achieved the best generalization with an R² of 0.91, RMSE ≈ 59K, and MAPE ≈ 6.9%, while maintaining reasonable computational efficiency.
 The experiment illustrates key machine learning trade-offs and practical deep learning optimization for real-world tabular data.
 
@@ -223,3 +224,4 @@ This project demonstrates advanced deep learning applications for language-based
 Despite data limitations, the best model achieved significant improvements using FastText embeddings and hybrid CNN–LSTM architectures, setting a strong foundation for future research on Myanmar language NLP and geographical text classification.
 
 ---
+
