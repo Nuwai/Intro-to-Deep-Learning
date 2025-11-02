@@ -1,4 +1,4 @@
-<img width="940" height="467" alt="image" src="https://github.com/user-attachments/assets/2355c1ff-1e67-4914-960e-f5e44cccf082" /><img width="940" height="467" alt="image" src="https://github.com/user-attachments/assets/0e7f42e0-275e-472c-9be3-3440de6d3ad7" /># Description
+# Description
 
 This repository is part of my coursework for the MMDT (Myannar Data Tech) program under Dr. Myo Thida, focusing on project-based learning in Deep Learning.
 It includes all assignments, experiments, and applied projects developed throughout the course; covering topics from fundamental neural network architectures to advanced model optimization and analysis.
@@ -66,6 +66,8 @@ Evaluation Metrics
 | Regularized Model 2 | 0.92       | 0.91      | 59,125 | 42,559 | 6.90     | 6,529  | 282.3    |
 | Leaky ReLU          | 0.93       | 0.93      | 54,665 | 39,187 | 6.36     | 18,433 | 416.9    |
 
+<img width="940" height="467" alt="image" src="https://github.com/user-attachments/assets/2355c1ff-1e67-4914-960e-f5e44cccf082" /><img width="940" height="467" alt="image" src="https://github.com/user-attachments/assets/0e7f42e0-275e-472c-9be3-3440de6d3ad7" />
+
 **Findings & Insights**
 
 - Model depth improves performance — up to a point. Beyond 4 layers, gains plateau while computation time rises sharply.
@@ -91,3 +93,4 @@ Evaluation Metrics
 **🏁 Conclusion**
 Regularized Model 2 achieved the best generalization with an R² of 0.91, RMSE ≈ 59K, and MAPE ≈ 6.9%, while maintaining reasonable computational efficiency.
 The experiment illustrates key machine learning trade-offs and practical deep learning optimization for real-world tabular data.
+
