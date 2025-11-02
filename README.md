@@ -266,7 +266,7 @@ Despite data limitations, the best model achieved significant improvements using
 ---
 
 ## CNN Models Comparison and Analysis
-# Project Overview
+### Project Overview
 
 This project evaluates the performance of several Convolutional Neural Network (CNN) architectures — ResNet50, VGGNet16, InceptionV3, ConvNeXt, and EfficientNet — on diverse image types to study their robustness, inference efficiency, and adaptability to domain-specific (Myanmar cultural) data.
 The goal is to understand how well pretrained ImageNet models generalize to both standard and culturally unique image inputs under varying conditions.
@@ -314,6 +314,7 @@ elif name == 'EfficientNet':
 Predictions were made using Top-K decoding, and inference time was recorded for each model.
 
 **Results and Findings**
+
 **🔹 Initial Observations**
 - Without correct preprocessing, InceptionV3 underperformed dramatically, producing confident but incorrect predictions.
 - After applying the appropriate model-specific preprocessing, accuracy improved to 85–96% across all models.
@@ -381,3 +382,4 @@ Key lessons include:
   - Efficiency–accuracy trade-offs are vital in model selection for real-world applications.
 Overall, this project strengthened our ability to conduct structured deep learning evaluations and interpret model behavior beyond raw accuracy numbers.
 ---
+
