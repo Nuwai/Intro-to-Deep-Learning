@@ -3,6 +3,8 @@
 This repository is part of my coursework for the MMDT (Myannar Data Tech) program under Dr. Myo Thida, focusing on project-based learning in Deep Learning.
 It includes all assignments, experiments, and applied projects developed throughout the course; covering topics from fundamental neural network architectures to advanced model optimization and analysis.
 The goal of this repository is to demonstrate practical mastery of deep learning principles, model experimentation, and performance evaluation using real-world datasets and problem statements.
+
+
 <img width="589" height="455" alt="Image" src="https://github.com/Nuwai/Intro-to-Deep-Learning/blob/main/Nu%20wai%20Thet-deeplearning.jpg" />![Uploading image.png…]()
 
 
@@ -385,6 +387,7 @@ Key lessons include:
   - Efficiency–accuracy trade-offs are vital in model selection for real-world applications.
 Overall, this project strengthened our ability to conduct structured deep learning evaluations and interpret model behavior beyond raw accuracy numbers.
 ---
+
 
 
 
