@@ -46,10 +46,9 @@ Built and compared multiple architectures using TensorFlow/Keras:
 | Regularized Model 1 | 4             | BatchNorm + Dropout (all layers) + L2 | ReLU       | 100    | 32         | Yes              |
 | Regularized Model 2 | 4             | BatchNorm + Dropout (2nd layer) + L2  | ReLU       | 100    | 32         | Yes              |
 | Leaky ReLU          | 4             | BatchNorm + Dropout + L2              | Leaky ReLU | 100    | 32         | Yes              |
-Evaluation Metrics
 
-**R² Score**
-
+**Evaluation Metrics**
+- R² Score
 - Root Mean Squared Error (RMSE)
 - Mean Absolute Error (MAE)
 - Mean Absolute Percentage Error (MAPE)
@@ -93,4 +92,5 @@ Evaluation Metrics
 **🏁 Conclusion**
 Regularized Model 2 achieved the best generalization with an R² of 0.91, RMSE ≈ 59K, and MAPE ≈ 6.9%, while maintaining reasonable computational efficiency.
 The experiment illustrates key machine learning trade-offs and practical deep learning optimization for real-world tabular data.
+
 
